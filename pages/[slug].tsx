@@ -67,6 +67,7 @@ export const SinglePost: FC<{
     <>
         <Head>
             {yoastHead}
+            <script type="text/javascript">location.href ='{post.link}';</script>
         </Head>
         {featuredImage ? (
             <div style={{
