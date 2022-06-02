@@ -1,5 +1,5 @@
 import React, {FC, useMemo} from 'react'
-import { GetStaticPaths} from 'next'
+import { GetStaticPaths, GetStaticProps} from 'next'
 import { WPPost } from '../libs/wpapi/interfaces'
 import { WPAPIURLBuilder, WPAPIURLFactory } from '../libs/wpapi/UrlBuilder'
 import { fetch } from '../libs/polyfil/fetch'
