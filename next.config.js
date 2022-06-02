@@ -1,7 +1,7 @@
 const withPWA = require('next-pwa')
 const settings = {
     env: {
-        WORDPRESS_URL: 'https://doctinnhanh.online/wp-json'
+        WORDPRESS_URL: 'https://myscience.live/wp-json'
     }
 }
 
