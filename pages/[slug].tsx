@@ -6,6 +6,9 @@ import { fetch } from '../libs/polyfil/fetch'
 import { canUseServerSideFeatures } from '../libs/next.env'
 import { Descriptions, Divider, Layout, PageHeader, Space } from 'antd'
 import { formatPostDateToString, getThePostAuthor, getThePostFeatureImage } from '../libs/wpapi/format'
+import { GetStaticProps } from 'next'
+import Head from 'next/head'
+import parse from 'html-react-parser'
 
 const urlBuilder = WPAPIURLFactory.init(
     process.env.WORDPRESS_URL,
@@ -18,8 +21,6 @@ export const uniqWPPosts = (posts: WPPost[]): WPPost[] => {
       return true
     })
 }
-
-git
 
 export const listAllPosts = async (APIURLBuilder: WPAPIURLBuilder, posts: WPPost[] = []): Promise<WPPost[]> => {
     const perPage = 20
@@ -61,8 +62,12 @@ export const SinglePost: FC<{
         return terms.flat().filter(Boolean)
     },[terms])
     const featuredImage = getThePostFeatureImage(post, 'large')
+    const yoastHead = parse(post.yoast_head)
     return (
     <>
+        <Head>
+            {yoastHead}
+        </Head>
         {featuredImage ? (
             <div style={{
                 textAlign: 'center'
