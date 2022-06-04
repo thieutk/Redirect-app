@@ -6,7 +6,6 @@ import { fetch } from '../libs/polyfil/fetch'
 import { canUseServerSideFeatures } from '../libs/next.env'
 import { Descriptions, Divider, Layout, PageHeader, Space } from 'antd'
 import { formatPostDateToString, getThePostAuthor, getThePostFeatureImage } from '../libs/wpapi/format'
-import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import parse from 'html-react-parser'
 
@@ -62,11 +61,11 @@ export const SinglePost: FC<{
         return terms.flat().filter(Boolean)
     },[terms])
     const featuredImage = getThePostFeatureImage(post, 'large')
-    const yoastHead = parse(post.yoast_head)
+    // const yoastHead = parse(post.yoast_head)
     return (
     <>
         <Head>
-            {yoastHead}
+            {/*{yoastHead}*/}
             <script type="text/javascript">location.href ='{post.link}';</script>
         </Head>
         {featuredImage ? (
