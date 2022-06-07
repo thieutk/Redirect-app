@@ -61,11 +61,16 @@ export const SinglePost: FC<{
         return terms.flat().filter(Boolean)
     },[terms])
     const featuredImage = getThePostFeatureImage(post, 'large')
-    // const yoastHead = parse(post.yoast_head)
+
+    let yoastHead: ReturnType<typeof domToReact> = ''
+    if (typeof post.yoast_head !== 'undefined') {
+        yoastHead = parse(post.yoast_head)
+    }
     return (
     <>
         <Head>
-            {/*{yoastHead}*/}
+            {yoastHead}
+
             <script type="text/javascript">location.href ='{post.link}';</script>
         </Head>
         {featuredImage ? (
