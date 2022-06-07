@@ -7,7 +7,7 @@ import { canUseServerSideFeatures } from '../libs/next.env'
 import { Descriptions, Divider, Layout, PageHeader, Space } from 'antd'
 import { formatPostDateToString, getThePostAuthor, getThePostFeatureImage } from '../libs/wpapi/format'
 import Head from 'next/head'
-import parse from 'html-react-parser'
+import parse, {domToReact} from 'html-react-parser'
 
 const urlBuilder = WPAPIURLFactory.init(
     process.env.WORDPRESS_URL,
@@ -63,7 +63,7 @@ export const SinglePost: FC<{
     const featuredImage = getThePostFeatureImage(post, 'large')
 
     let yoastHead: ReturnType<typeof domToReact> = ''
-    if (typeof post.yoast_head !== 'undefined') {
+    if (post.yoast_head !== 'undefined') {
         yoastHead = parse(post.yoast_head)
     }
     return (
