@@ -22,6 +22,7 @@ export type WPPost = {
     type: string;
     link: string;
     _embedded: WPPostEmbedded;
+    yoast_head: string;
   };
 export type WPMediaDetailSize = {
     file: string;
