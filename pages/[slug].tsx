@@ -67,14 +67,6 @@ export const SinglePost: FC<{
     if (post.yoast_head !== 'undefined') {
         yoastHead = parse(post.yoast_head)
     }
-    //const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
-      const url = typeof window !== 'undefined' ? window.location.href : ''
-      
-      var pattern = /^(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?$/;
-       if (url.referer && /facebook\.com|twitter\.com|t\.co/gi.test(url.referer)) {
-            sendRedirect(event,"https://science24.info"+event.req.url);
-        }
-
   
     return (
     <>
