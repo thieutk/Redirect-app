@@ -9,6 +9,7 @@ import { formatPostDateToString, getThePostAuthor, getThePostFeatureImage } from
 import Head from 'next/head'
 import parse, {domToReact} from 'html-react-parser'
 
+
 const urlBuilder = WPAPIURLFactory.init(
     process.env.WORDPRESS_URL,
 ).postType('posts').startAt(1).withEmbed()
@@ -66,12 +67,22 @@ export const SinglePost: FC<{
     if (post.yoast_head !== 'undefined') {
         yoastHead = parse(post.yoast_head)
     }
+    //const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
+    const url = typeof window !== 'undefined' ? window.location.href : ''
+      var pattern = /^(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?$/;
+      if(pattern.test(url)) {
+        alert("Correct URL");
+      }
+      else {
+        console.log(pattern);
+      }
+      //return pattern.test(url);
+  
     return (
     <>
         <Head>
             {yoastHead}
-
-            <script type="text/javascript">location.href ='{post.link}';</script>
+           
         </Head>
         {featuredImage ? (
             <div style={{
