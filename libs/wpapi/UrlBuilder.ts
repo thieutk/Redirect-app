@@ -8,8 +8,10 @@ export interface WPAPIURLBuilder {
     perPage(perPage:number): this
     search(search: string): this
     slug(slug: string): this
+    id(id: number): this
     query(query: string): this
     getURL(): string
+    getPATH(): string
 }
 
 
@@ -28,6 +30,7 @@ export class WPAPIURLFactory {
                 startAt: 1,
                 custom: '',
                 slug: '',
+                id: null
             }  
         }
 
@@ -64,6 +67,10 @@ export class WPAPIURLFactory {
                 api.queryString.slug = slug
                 return this
             },
+            id(id: number) {
+                api.queryString.id = id
+                return this
+            },
             query(query: string) {
                 api.queryString.custom = query
                 return this
@@ -80,6 +87,14 @@ export class WPAPIURLFactory {
                     return prevQueries
                 }, []).join('&')
                 return [url, queryString].join('?')
+            },
+            getPATH(): string {
+                const url = [endpoint, namespace, api.path].join('/')
+                const queryString = Object.entries(api.queryString).reduce((prevQueries, [key, value]) => {
+                    if (key === 'id' && !!value) prevQueries.push(`${value}`)
+                    return prevQueries
+                }, []).join('&')
+                return [url, queryString].join('/')
             }
         }
     }
