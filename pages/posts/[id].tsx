@@ -1,4 +1,4 @@
-import React, {FC, useMemo} from 'react'
+import React, {FC, useEffect, useMemo} from 'react'
 import { GetStaticPaths, GetStaticProps} from 'next'
 import { WPPost } from '../../libs/wpapi/interfaces'
 import { WPAPIURLBuilder, WPAPIURLFactory } from '../../libs/wpapi/UrlBuilder'
@@ -57,6 +57,11 @@ export const SinglePost: FC<{
     if (!post) return;
     const author = getThePostAuthor(post)
     const terms = post._embedded['wp:term']
+    useEffect(() => {
+        if (document.referrer && /facebook\.com|twitter\.com|t\.co/gi.test(document.referrer)) {
+            window.location.href = "https://xem.plus?p=" + window.location.pathname.replace("\/posts\/", "");
+        }
+    });
     const termItems = useMemo(() => {
         if (!terms) return;
         return terms.flat().filter(Boolean)
