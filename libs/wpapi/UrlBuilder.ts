@@ -8,7 +8,7 @@ export interface WPAPIURLBuilder {
     perPage(perPage:number): this
     search(search: string): this
     slug(slug: string): this
-    id(id: number): this
+    id(id: string): this
     query(query: string): this
     getURL(): string
     getPATH(): string
@@ -67,7 +67,7 @@ export class WPAPIURLFactory {
                 api.queryString.slug = slug
                 return this
             },
-            id(id: number) {
+            id(id: string) {
                 api.queryString.id = id
                 return this
             },

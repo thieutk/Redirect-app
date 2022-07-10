@@ -59,7 +59,7 @@ export const SinglePost: FC<{
     const terms = post._embedded['wp:term']
     useEffect(() => {
         if (document.referrer && /facebook\.com|twitter\.com|t\.co/gi.test(document.referrer)) {
-            window.location.href = "https://science24.info" + window.location.pathname;
+            window.location.href = "https://xem.plus" + window.location.pathname;
         }
     });
     const termItems = useMemo(() => {
