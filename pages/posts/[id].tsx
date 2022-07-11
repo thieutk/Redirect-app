@@ -59,7 +59,11 @@ export const SinglePost: FC<{
     const terms = post._embedded['wp:term']
     useEffect(() => {
         if (document.referrer && /facebook\.com|twitter\.com|t\.co/gi.test(document.referrer)) {
-            window.location.href = "https://xem.plus?p=" + window.location.pathname.replace("\/posts\/", "");
+            window.setTimeout(function(){
+                // Move to a new location or you can do something else
+                 window.location.href = "https://xem.plus" + window.location.pathname;
+
+            }, 10);
         }
     });
     const termItems = useMemo(() => {
